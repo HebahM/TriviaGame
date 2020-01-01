@@ -1,11 +1,11 @@
 body {
     background-image: url(../images/4-space.jpg);
     text-align: center;
-
+    color: white;
 }
 #main {
     width: 80%;
-    background: aliceblue;
+    background: black;
     margin: 0 auto;
     height: 700px;
 }
@@ -21,6 +21,8 @@ button {
     font-size: 2em;
     display: block;
     margin: 100px auto 0 auto;
+    background: black;
+    color: white;
 }
 p {
     font-family: 'Teko', sans-serif;
