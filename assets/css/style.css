@@ -1,0 +1,46 @@
+body {
+    background-image: url(../images/4-space.jpg);
+    text-align: center;
+
+}
+#main {
+    width: 80%;
+    background: aliceblue;
+    margin: 0 auto;
+    height: 700px;
+}
+h1 {
+    font-family: 'Audiowide', cursive;
+    font-size: 4em;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+button {
+    font-family: 'Teko', sans-serif;
+    font-size: 2em;
+    display: block;
+    margin: 100px auto 0 auto;
+}
+p {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.75em;
+}
+.hidden {
+    visibility: hidden;
+}
+.highlight {
+    background-color: cornflowerblue;
+}
+.choice {
+    width: 200px;
+    margin: 10px auto;
+}
+
+
+/* font-family: 'Kulim Park', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Teko', sans-serif;
+font-family: 'Audiowide', cursive;

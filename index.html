@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Kulim+Park|Lato|Montserrat|Raleway|Teko&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <title>Trivia Game</title>
+</head>
+
+<body>
+    <div id="main">
+        <h1>The Solar System</h1>
+        <button id="start">Start Game</button>
+
+        <div id="q1" class="question hidden">
+            <p>What is the third planet from the sun?</p>
+            <p class="choice wrong">Mercury</p>
+            <p class="choice correct">Earth</p>
+            <p class="choice wrong">Venus</p>
+            <p class="choice wrong">Mars</p>
+        </div>
+        <div id="q1Correct" class="hidden">
+            <p>Correct!</p>
+            <img src="assets/images/Earth-Western-Hemisphere.jpg" width="350px" length="350px">
+        </div>
+        <div id="q1Wrong" class="hidden">
+            <p>Wrong!</p>
+            <p>The correct answer is Earth</p>
+            <img src="assets/images/Earth-Western-Hemisphere.jpg" width="350px" length="350px">
+        </div>
+
+        <div id="q2" class="hidden">
+            <p>How long does it take for Earth to spin upon its axis?</p>
+            <p id="answer" class="choice">1 day</p>
+            <p class="choice">1 week</p>
+            <p class="choice">1 month</p>
+            <p class="choice">1 year</p>
+        </div>
+    
+        <div id="q3" class="hidden">
+            <p>How long does it take for Earth to orbit the sun?</p>
+            <p class="choice">1 day</p>
+            <p class="choice">1 week</p>
+            <p class="choice">1 month</p>
+            <p id="answer" class="choice">1 year</p>
+        </div>
+
+    </div> 
+
+    
+
+    <script src="assets/javascript/app.js"></script>
+
+</body>
+
+</html>
