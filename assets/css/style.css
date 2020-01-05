@@ -7,7 +7,10 @@ body {
     width: 80%;
     background: black;
     margin: 0 auto;
-    height: 700px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    min-height: 600px;
+    height: auto;
 }
 h1 {
     font-family: 'Audiowide', cursive;
@@ -16,24 +19,42 @@ h1 {
     padding-bottom: 50px;
 }
 
-button {
+#start  {
     font-family: 'Teko', sans-serif;
     font-size: 2em;
     display: block;
     margin: 100px auto 0 auto;
     background: black;
     color: white;
+    outline: none;
+}
+#answerChoices button {
+    font-family: 'Teko', sans-serif;
+    font-size: 1em;
+    display: block;
+    margin: 0 auto 10px auto;
+    background: black;
+    color: white;
+    border: none;
+    outline: none;
+}
+#answerChoices button:hover {
+    background-color: white;
+    color: black;
+
+}
+#timer {
+    font-size: .8em;
 }
 p {
     font-family: 'Teko', sans-serif;
     font-size: 1.75em;
 }
 .hidden {
-    visibility: hidden;
+    /* visibility: hidden; */
+    display: none;
 }
-.highlight {
-    background-color: cornflowerblue;
-}
+
 .choice {
     width: 200px;
     margin: 10px auto;
