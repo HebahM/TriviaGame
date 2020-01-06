@@ -3,7 +3,6 @@ $(document).ready(function () {
     var wrongAnswers = 0;
     var unanswered = 0;
     var timeLeft = 5;
-    //var countdown;
     var questionNumber = 0;
 
 
@@ -47,9 +46,16 @@ $(document).ready(function () {
             }
         }
         else {
-            $("#main").html("<h1>The Solar System</h1><p>Correct: " + correctAnswers + "</p><p> Incorrect: " + wrongAnswers + "</p><p>Unanswered: " + unanswered + "</p><button id='reset'>Reset</button>");
+            $("#results").html("<p>Correct: " + correctAnswers + "</p><p> Incorrect: " + wrongAnswers + "</p><p>Unanswered: " + unanswered + "</p><button id='reset'>Reset</button>");
+            $("#results").removeClass("hidden");
+            $("#question").empty();
+            $("#answerChoices").empty();
+            $("#timer").empty();
+            $("#timesUp").empty();
+            $("#response").empty();
+            $("#question").empty();
         };
-    }
+    };
 
     // Question List:
     var questions = [
@@ -117,10 +123,9 @@ $(document).ready(function () {
 
 
 
-    /////////////////// Start the game:
+    // Start the game:
     $("#start").on("click", function () {
         $(this).remove();
-        //countdown = setInterval(timer, 1000)
         newQuestion();
 
 
@@ -138,77 +143,34 @@ $(document).ready(function () {
                 correctAnswers++;
                 console.log("correct answers:" + correctAnswers);
                 questionNumber++;
-                setTimeout(newQuestion, 3000);
+                setTimeout(newQuestion, 300);
 
             }
             else {
-                //alert("Wrong answer!!");
                 $("#question").text("Wrong!");
                 $("#answerChoices").text("The correct answer is " + questions[questionNumber].correctAnswer);
                 wrongAnswers++;
                 console.log("wrong answers: " + wrongAnswers);
                 questionNumber++;
-                setTimeout(newQuestion, 3000);
+                setTimeout(newQuestion, 300);
 
             };
 
         });
-
+        
         
     });
 
-    $("button").on("click", "#reset", function() {
-        alert("You clicked the reset button!!")
+    $(document).on("click", "#reset", function() {
+        
         questionNumber = 0;
         wrongAnswers = 0;
         correctAnswers = 0;
         unanswered = 0;
         newQuestion();
+        $("#reset").empty();
+        $("#results").empty();
     });
 });
 
-/*
-
- /*
-        function chooseAnswer(questI) {
-            // $("#timer").remove();
-            // clearInterval(countdown);
-            // timeLeft = 30;
-    
-            $("#question").empty();
-            $("#answerChoices").empty();
-            $("#response").html(questions[questionNumber].image)
-            if (userChoice == questions[questionNumber].correctAnswer) {
-                $("#question").text("Correct!");
-                correctAnswers++;
-                right = true;
-                console.log("correct answers:" + correctAnswers)
-                timeLeft = 5;
-                setTimeout(newQuestion(), 3000)
-            }
-            else {
-                $("#question").text("Wrong!")
-                $("#answerChoices").text("The correct answer is " + questions[questionNumber].correctAnswer);
-                wrongAnswers++;
-                wrong = true;
-                console.log("wrong answers: " + wrongAnswers)
-                setTimeout(newQuestion(), 3000)
-            }
-        }*/
-
-
-        /*
-        function thatsRight(questI) {
-            $("#question").text("Correct!");
-            $("#response").html(questions[questNum].image)
-        }
-        function correctAnsIs(questI) {
-            $("#answerChoices").text("The correct answer is " + questions[questNum].correctAnswer);
-            $("#response").html(questions[questNum].image);
-        };
-    
-        function timesUp(questI) {
-            $("#answerChoices").text("The correct answer is " + questions[questNum].correctAnswer);
-            $("#response").html(questions[questI].image);
-        }*/
 
