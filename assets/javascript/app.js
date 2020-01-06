@@ -2,7 +2,7 @@ $(document).ready(function () {
     var correctAnswers = 0;
     var wrongAnswers = 0;
     var unanswered = 0;
-    var timeLeft = 5;
+    var timeLeft = 30;
     var questionNumber = 0;
 
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
             $("#timesUp").empty();
             $("#response").empty();
             $("#answerChoices").empty();
-            timeLeft = 5;
+            timeLeft = 30;
             countdown = setInterval(timer, 1000);
             for (var i = 0; i < questions[questionNumber].answers.length; i++) {
                 var a = $("<button>");
