@@ -23,7 +23,7 @@ $(document).ready(function () {
             $("#response").html(questions[questionNumber].image);
             questionNumber++;
             setTimeout(newQuestion, 3000);
-            
+
 
         };
 
@@ -143,7 +143,7 @@ $(document).ready(function () {
                 correctAnswers++;
                 console.log("correct answers:" + correctAnswers);
                 questionNumber++;
-                setTimeout(newQuestion, 300);
+                setTimeout(newQuestion, 3000);
 
             }
             else {
@@ -152,17 +152,17 @@ $(document).ready(function () {
                 wrongAnswers++;
                 console.log("wrong answers: " + wrongAnswers);
                 questionNumber++;
-                setTimeout(newQuestion, 300);
+                setTimeout(newQuestion, 3000);
 
             };
 
         });
-        
-        
+
+
     });
 
-    $(document).on("click", "#reset", function() {
-        
+    $(document).on("click", "#reset", function () {
+
         questionNumber = 0;
         wrongAnswers = 0;
         correctAnswers = 0;
