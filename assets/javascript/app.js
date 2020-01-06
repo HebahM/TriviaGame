@@ -3,35 +3,53 @@ $(document).ready(function () {
     var wrongAnswers = 0;
     var unanswered = 0;
     var timeLeft = 5;
-    var countdown;
-    // var clockRunning = false;
+    //var countdown;
+    var questionNumber = 0;
 
 
     // Timer
     function timer() {
+
         $("#timer").html("<p>Time Remaining: " + timeLeft + " seconds</p>");
         timeLeft--;
-        clockRunning = true;
-        console.log(timeLeft)
+        console.log(timeLeft);
+
         if (timeLeft == -1) {
             clearInterval(countdown);
             unanswered++;
-            console.log("Unanswered questions: " + unanswered)
-            $(".hidden").removeClass("hidden");
-            $("#answerChoices").text("The correct answer is " + questions[0].correctAnswer);
-            $("#response").html(questions[0].image)
-        }
+            //console.log("Unanswered questions: " + unanswered);
+            $("#timesUp").text("Time's Up");
+            $("#answerChoices").empty();
+            $("#answerChoices").text("The correct answer is " + questions[questionNumber].correctAnswer);
+            $("#response").html(questions[questionNumber].image);
+            questionNumber++;
+            setTimeout(newQuestion, 3000);
+            
+
+        };
+
     };
 
-    /*
-    function stopTimer() {
-    
-        // DONE: Use clearInterval to stop the count here and set the clock to not be running.
-        clearInterval(intervalId);
-        clockRunning = false;
+    function newQuestion() {
+        if (questionNumber < 10) {
+            $("#question").text(questions[questionNumber].question);
+            $("#timesUp").empty();
+            $("#response").empty();
+            $("#answerChoices").empty();
+            timeLeft = 5;
+            countdown = setInterval(timer, 1000);
+            for (var i = 0; i < questions[questionNumber].answers.length; i++) {
+                var a = $("<button>");
+                a.addClass("answerChoice");
+                a.attr("buttonText", questions[questionNumber].answers[i]);
+                a.text(questions[questionNumber].answers[i]);
+                $("#answerChoices").append(a);
+            }
+        }
+        else {
+            $("#main").html("<h1>The Solar System</h1><p>Correct: " + correctAnswers + "</p><p> Incorrect: " + wrongAnswers + "</p><p>Unanswered: " + unanswered + "</p><button id='reset'>Reset</button>");
+        };
     }
-    */
-
 
     // Question List:
     var questions = [
@@ -99,87 +117,98 @@ $(document).ready(function () {
 
 
 
-    // Puts the next question on the screen:
-    function newQuestion(questI) {
-        $("#question").append(questions[questI].question);
-        //    countdown = setInterval(timer, 1000);
-
-
-        for (var i = 0; i < questions[questI].answers.length; i++) {
-
-            // Then dynamicaly generating buttons for each movie in the array.
-            // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-            var a = $("<button>");
-            // Adding a class
-            a.addClass("answerChoice");
-            // Adding a data-attribute with a value of the movie at index i
-            a.attr("buttonText", questions[questI].answers[i]);
-            // Providing the button's text with a value of the movie at index i
-            a.text(questions[questI].answers[i]);
-            // Adding the button to the HTML
-            $("#answerChoices").append(a);
-        }
-
-        
-        $("button").on("click", function () {
-            // $("#timer").remove();
-            clearInterval(countdown);
-            // timeLeft = 30;
-            var userChoice = $(this).text();
-            $("#question").empty();
-            $("#answerChoices").empty();
-            $("#response").html(questions[questI].image)
-            console.log(userChoice);
-            if (userChoice == questions[questI].correctAnswer) {
-                $("#question").text("Correct!");
-                correctAnswers++;
-                console.log("correct answers:" + correctAnswers)
-            }
-            else {
-                $("#question").text("Wrong!")
-                $("#answerChoices").text("The correct answer is " + questions[questI].correctAnswer);
-                wrongAnswers++;
-                console.log("wrong answers: " + wrongAnswers)
-            }
-        });
-
-        countdown = setInterval(timer, 1000)
-        
-
-        // if (timeLeft == 0) {
-        //     console.log(timeLeft);
-        //     clearInterval(countdown);
-        //     alert("Time's Up");
-        //     // $("#timer").empty();
-        //     $("#timer").text("Time's Up!");
-        //     $("#answerChoices").text("The correct answer is " + questions[questI].correctAnswer);
-        //     $("#response").html(questions[questI].image);
-        //     unanswered++;
-        // }
-
-
-
-    }
-
-    // Start the game:
+    /////////////////// Start the game:
     $("#start").on("click", function () {
         $(this).remove();
         //countdown = setInterval(timer, 1000)
-        newQuestion(0);
-        // delay(3000).newQuestion(1);
-    })
-
-    // if (timeLeft == 0) {
-    //     console.log(timeLeft)
-    //     clearInterval(countdown);
-    //     $("#timer").empty();
-    //     $("#timer").text("Time's Up!");
-    //     $("#answerChoices").text("The correct answer is " + questions[questI].correctAnswer);
-    //     $("#response").html(questions[questI].image)
-    //     unanswered++;
-    // }
+        newQuestion();
 
 
+        $(document).on("click", "#answerChoices button", function () {
+            var userChoice = $(this).text();
+            clearInterval(countdown);
+            //timeLeft = 5;
+            $("#question").empty();
+            $("#answerChoices").empty();
+            $("#response").html(questions[questionNumber].image);
+            console.log(userChoice);
+            questComplete = true;
+            if (userChoice == questions[questionNumber].correctAnswer) {
+                $("#question").text("Correct!");
+                correctAnswers++;
+                console.log("correct answers:" + correctAnswers);
+                questionNumber++;
+                setTimeout(newQuestion, 3000);
 
+            }
+            else {
+                //alert("Wrong answer!!");
+                $("#question").text("Wrong!");
+                $("#answerChoices").text("The correct answer is " + questions[questionNumber].correctAnswer);
+                wrongAnswers++;
+                console.log("wrong answers: " + wrongAnswers);
+                questionNumber++;
+                setTimeout(newQuestion, 3000);
 
+            };
+
+        });
+
+        
+    });
+
+    $("button").on("click", "#reset", function() {
+        alert("You clicked the reset button!!")
+        questionNumber = 0;
+        wrongAnswers = 0;
+        correctAnswers = 0;
+        unanswered = 0;
+        newQuestion();
+    });
 });
+
+/*
+
+ /*
+        function chooseAnswer(questI) {
+            // $("#timer").remove();
+            // clearInterval(countdown);
+            // timeLeft = 30;
+    
+            $("#question").empty();
+            $("#answerChoices").empty();
+            $("#response").html(questions[questionNumber].image)
+            if (userChoice == questions[questionNumber].correctAnswer) {
+                $("#question").text("Correct!");
+                correctAnswers++;
+                right = true;
+                console.log("correct answers:" + correctAnswers)
+                timeLeft = 5;
+                setTimeout(newQuestion(), 3000)
+            }
+            else {
+                $("#question").text("Wrong!")
+                $("#answerChoices").text("The correct answer is " + questions[questionNumber].correctAnswer);
+                wrongAnswers++;
+                wrong = true;
+                console.log("wrong answers: " + wrongAnswers)
+                setTimeout(newQuestion(), 3000)
+            }
+        }*/
+
+
+        /*
+        function thatsRight(questI) {
+            $("#question").text("Correct!");
+            $("#response").html(questions[questNum].image)
+        }
+        function correctAnsIs(questI) {
+            $("#answerChoices").text("The correct answer is " + questions[questNum].correctAnswer);
+            $("#response").html(questions[questNum].image);
+        };
+    
+        function timesUp(questI) {
+            $("#answerChoices").text("The correct answer is " + questions[questNum].correctAnswer);
+            $("#response").html(questions[questI].image);
+        }*/
+

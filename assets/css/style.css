@@ -19,7 +19,7 @@ h1 {
     padding-bottom: 50px;
 }
 
-#start  {
+#start, #reset  {
     font-family: 'Teko', sans-serif;
     font-size: 2em;
     display: block;
